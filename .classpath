@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.2.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-el-1.0.zip"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-el.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.1.1-bin.zip"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-pool-1.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-appengine-1.0.0.final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-core-1.1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-jpa-1.1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/fusionchart_api_1.0.zip"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-dnd-3.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-gears.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-visualization-javadoc.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jdo2-api-2.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/naming-common.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/naming-factory.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/naming-java.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/naming-resources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-visualization-1.0.2.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-maps.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javax.servlet_3.0.0.v201112011016.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/olap4j-1.1.0.jar" sourcepath="war/WEB-INF/lib/olap4j-1.1.0-src.zip"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/olap4j-tck-1.1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/olap4j-xmla-1.1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

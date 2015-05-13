@@ -1,0 +1,805 @@
+<html>
+
+<head>
+<style> 
+#gbar{height:22px;padding-left:10px}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}#gbi,#gbs{background:#fff;left:0;position:absolute;top:24px;visibility:hidden;z-index:1000}#gbi{border:1px solid;border-color:#c9d7f1 #36c #36c #a2bae7;z-index:1001}#guser{padding-bottom:7px !important}#gbar,#guser{font-size:13px;padding-top:4px !important}@media all{.gb1,.gb3{height:22px;margin-right:.73em;vertical-align:top}#gbar{float:left}}.gb2{display:block;padding:.2em .5em}a.gb1,a.gb2,a.gb3{color:#00c !important}.gb2,.gb3{text-decoration:none}a.gb2:hover{background:#36c;color:#fff !important}
+.actionlinks {padding:12px 0 10px 16px}
+.searchtabsheader {padding:10px 0 10px 4px}
+.searchtabs {
+height: 290px;
+}
+.last_td {
+height: 60px;
+}
+.searchtabs td {padding:4px 16px 4px 10px}
+.searchtabs td.inactive {
+background:#E5ECF9;
+border-right: 1px solid #ccc;
+}
+.searchtabs td.active {
+background:#fff;
+border-left: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+border-top: 1px solid #ccc;
+}
+.searchtabs td.inactive a {
+text-decoration:underline;
+cursor:pointer;
+}
+.searchtabs td.active a {
+font-weight:bold;
+text-decoration:none;
+color:black;
+}
+.criteria_wizard {background:#E5ECF9; padding-left:6px; padding-bottom:10px;}
+.criteria_list_div {
+height: 290px;
+text-align: left;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+border-right: 1px solid #ccc;
+}
+.sectexchtab {
+background-color:#E5ECF9;
+margin:10px 10px 10px 0px;
+padding:2px 10px;
+}
+.sectexchtab select { width:10em; }
+.disabled {border:1px inset black; background-color:#eee;}
+.selected_tab {display:block; background:#fff;}
+.criteriadiv {white-space:nowrap; padding:5px 25px 5px 14px; background:#fff;}
+.margin {margin:2px 0 2px 6px;}
+.innermargin {margin:2px 0 2px 8px;}
+.activelink {text-decoration:underline; cursor:pointer;}
+.inactivelink {font-weight:bold; text-decoration:none; color:black;}
+.displaynone {display:none;}
+.displayinline {display:inline;}
+.displayblock {display:block;}
+.field_input {border:1px inset black; background-color: #fff;}
+.field_input:hover {border:1px inset black; background-color: #ffa;}
+.field_name_td {white-space:nowrap;}
+.align_left_td {text-align:left;}
+.align_right_td {text-align:right;}
+.tooltip {
+background: #eef2fa;
+color: black;
+border: 1px solid black;
+padding: 7px;
+width: 300px;
+}
+.definition-title {font-size: 1.15em; font-weight: bold;}
+.top_row {border-bottom: 1px solid #ccc;}
+.bottom_row {border-top: 1px solid #ccc;}
+.check {
+background: transparent url(/finance/s/nXoCiLur4u4/images/check.gif) no-repeat scroll left top;
+padding-left: 18px;
+text-align: left;
+font-weight: bold;
+}
+.sliderimage_default {margin: 2px;}
+.sliderimage_hover {margin: 2px;}
+</style>
+
+<script type="text/javascript">
+	document.onmousemove = mouseMove; 
+	document.onmouseup   = mouseUp; 
+	 
+	var dragObject  = null; 
+	var mouseOffset = null; 
+	 
+	function getMouseOffset(target, ev) { 
+	    ev = ev || window.event; 
+	    var docPos    = getPosition(target); 
+	    var mousePos  = mouseCoords(ev); 
+	    return {x:mousePos.x - docPos.x, y:mousePos.y - docPos.y}; 
+	} 
+	 
+	function getPosition(e) { 
+	    var left = 0; 
+	    var top  = 0; 
+	 
+	    while (e.offsetParent){ 
+	        left += e.offsetLeft; 
+	        top  += e.offsetTop; 
+	        e     = e.offsetParent; 
+	    } 
+	 
+	    left += e.offsetLeft; 
+	    top  += e.offsetTop; 
+	 
+	    return {x:left, y:top}; 
+	} 
+	 
+	function mouseMove(ev) { 
+	    ev = ev || window.event; 
+	    var mousePos = mouseCoords(ev); 
+	 
+	    if(dragObject){ 
+	        dragObject.style.position = 'absolute'; 
+	        dragObject.style.top      = mousePos.y - mouseOffset.y; 
+	        dragObject.style.left     = mousePos.x - mouseOffset.x; 
+	 
+	        return false; 
+	    } 
+	} 
+	function mouseUp() { 
+	    dragObject = null; 
+	} 
+
+	function mouseCoords(ev) { 
+	    if(ev.pageX || ev.pageY){ 
+	        return {x:ev.pageX, y:ev.pageY}; 
+	    } 
+	    return { 
+	        x:ev.clientX + document.body.scrollLeft - document.body.clientLeft, 
+	        y:ev.clientY + document.body.scrollTop  - document.body.clientTop 
+	    }; 
+	}  
+
+	function makeDraggable(item) { 
+	    if(!item) return; 
+	    item.onmousedown = function(ev){ 
+	        dragObject  = this; 
+	        mouseOffset = getMouseOffset(this, ev); 
+	        return false; 
+	    } 
+	} 
+</script>
+
+<link rel="stylesheet" href="styles_us.css">
+<link rel="stylesheet" href="slider_styles.css">
+</head>
+
+<body>
+<table id="criteria_rows" cellpadding="6" cellspacing="0">
+	<tbody id="criteria_rows_tbody">
+		<tr id="row_PE">
+			<td class="field_name_td">
+				P/E ratio
+				<img src="images/question.gif" class="activelink" id="PE_help" align="absmiddle">
+			</td>
+			<td class="align_left_td">
+				<input id="PE_left" type="text" size="10" class="field_input">
+			</td>
+			<td width="200">
+				<div id="sliderback_PE" class="sliderback displaynone" style="display: block; ">
+					<table style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+						<tbody>
+							<tr>
+								<td valign="middle">
+									<div id="slider_PE_left" class="slider" style="left: 0px; top: 0px; ">
+										<div id="sliderimage_PE_left" class="sliderimage" onmousemove="javascript:mouseMove(this);">
+									</div>
+								</td>
+								<td class="histogram_td" valign="top">
+									<div id="histogram_PE" class="displayinline">
+										<table id="histogram_PE_table" cellpadding="0" cellspacing="0" border="0">
+											<tbody>
+												<tr>
+													<!-- The histogram bars... data normalized to 100 bars -->
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+													<td style="vertical-align:bottom;padding-left:0px;">
+														<div style="background-color:#0F6FDF;overflow:hidden;width:1px;height:6.1072056239015815px;">
+													</td>
+													<td>
+														<div style="background-color:#fff;width:1px;height:0px;">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+								<td valign="middle">
+									<div id="slider_PE_right" class="slider" style="left: 200px; top: 0px; ">
+										<div id="sliderimage_PE_right" class="sliderimage">
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+			<td class="align_right_td">
+				<input id="PE_right" type="text" size="10" class="field_input">
+			</td>
+			<td>
+				<img src="images/delete.gif" class="activelink">
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

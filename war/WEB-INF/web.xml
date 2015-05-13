@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application
+		2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd"
+	-->
+<web-app>
+	<description>Smart Kpis (Nemesis 3)</description>
+  <!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>SmartKpis.html</welcome-file>
+	</welcome-file-list>
+  
+  <!-- Servlets -->
+	<servlet>
+		<servlet-name>nemesisService</servlet-name>
+		<servlet-class>org.colombiamovil.smartkpi.server.NemesisServiceImpl
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>reportBuilder</servlet-name>
+		<servlet-class>org.colombiamovil.smartkpi.server.ReportBuilder
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>screenerChartBuilder</servlet-name>
+		<servlet-class>org.colombiamovil.smartkpi.server.ScreenerChartBuilder
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>XMLDataSupplier</servlet-name>
+		<servlet-class>org.colombiamovil.smartkpi.server.XMLDataSupplier
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ZIPDataSupplier</servlet-name>
+		<servlet-class>org.colombiamovil.smartkpi.server.ZIPDataSupplier
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>nemesisService</servlet-name>
+		<url-pattern>/smartkpis/nemesis</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>reportBuilder</servlet-name>
+		<url-pattern>/smartkpis/repbuild</url-pattern>
+		<url-pattern>/repbuild</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>screenerChartBuilder</servlet-name>
+		<url-pattern>/smartkpis/scbuild</url-pattern>
+		<url-pattern>/scbuild</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>XMLDataSupplier</servlet-name>
+		<url-pattern>/smartkpis/xmldatasup</url-pattern>
+		<url-pattern>/xmldatasup</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ZIPDataSupplier</servlet-name>
+		<url-pattern>/smartkpis/zipdatasup</url-pattern>
+		<url-pattern>/zipdatasup</url-pattern>
+	</servlet-mapping>
+</web-app>

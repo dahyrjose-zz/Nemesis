@@ -1,0 +1,491 @@
+/** Fixing default styles. */
+
+.gwt-Label {
+	vertical-align: text-bottom;
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-Hyperlink {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-DateBox {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-TextBox {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-CheckBox {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-ListBox {
+	font-family: sans-serif;
+	font-size: 12px;
+	border: 1px;
+}
+
+.gwt-RadioButton {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-Tree {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-Tree .gwt-TreeItem {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.gwt-Frame {
+	margin: 0px;
+	border: 0px none;
+	width: 630px;
+	height: 330px;
+}
+
+/*.gwt-MenuBar {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	background: none;
+	background-color: white;
+}
+
+.gwt-MenuBar-horizontal {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	background: none;
+	background-color: white;
+}
+.gwt-MenuBar-vertical {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .gwt-MenuItem {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .gwt-MenuItem-selected {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .gwt-MenuItemSeparator {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .gwt-MenuItemSeparator .menuSeparatorInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupTopLeft {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupTopLeftInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupTopCenter {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupTopCenterInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupTopRight {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupTopRightInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupMiddleLeft {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupMiddleLeftInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupMiddleCenter {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupMiddleCenterInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupMiddleRight {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupMiddleRightInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupBottomLeft {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupBottomLeftInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupBottomCenter {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupBottomCenterInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupBottomRight {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+.gwt-MenuBar .menuPopupBottomRightInner {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+*/
+
+.smart-MenuItem {
+/*	border: 1px solid #666;
+	border-width: 1px 0;
+	margin: 0 auto;
+	font-size: 80%;*/
+	font-family: sans-serif;
+	font-size: 12px;
+	margin: 0 auto;
+	border: 0px;
+	font-weight: normal;
+	background: none;
+	background-color: white;
+	z-index: 20;
+}
+
+.smart-MenuItem .gwt-MenuItem {
+/*	cursor: hand;
+	cursor: pointer;
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	background-color: #eee;
+	padding: 0 12px;*/
+	cursor: hand;
+	cursor: pointer;
+	font-family: sans-serif;
+	font-size: 12px;
+	margin: 0 auto;
+	border: 0px;
+	padding: 0 12px;
+	background: none;
+	background-color: white;
+	z-index: 20;
+}
+
+.smart-MenuItem .gwt-MenuItem-selected {
+/*	background-color: #ffc;*/
+	font-family: sans-serif;
+	font-size: 12px;
+	margin: 0 auto;
+	border: 0px;
+	background: none;
+	background-color: #F0F0FF;
+	z-index: 20;
+}
+/** Done fixing default styles. */
+
+.headerStyle {
+  background-color: #406AB6;
+  background-image: url('images/colors.png');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  width: 100%;
+  border-bottom: 1px solid silver;
+}
+
+.silverBottom {
+  border-bottom: 1px solid silver;
+}
+
+.silverTopLeft {
+  border-top: 1px solid silver;
+  border-left: 1px solid silver;
+}
+
+.menuStyle {
+}
+
+.kpiScreenerStyle {
+  padding: 12px;
+}
+
+.button {
+  margin: 0;
+  padding: 0px;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  border: 1px solid #A2BBDD;
+}
+/*-----  Styles for hystogram  -----*/
+.field_input {
+	border:1px solid #A2BBDD;
+	background-color: #fff;
+	font-family: sans-serif;
+	font-size: 80%;
+}
+
+.field_input:hover {
+	/*border:1px inset black;*/
+	background-color: #ffa;
+}
+
+.activehyperlink {
+	cursor: default;
+	vertical-align: middle;
+}
+
+.activelink {
+	vertical-align: text-bottom;
+	font-family: sans-serif;
+	font-size: 12px;
+	text-decoration:underline;
+	cursor:pointer;
+	vertical-align: middle;
+	color: 0000AA;
+}
+
+.orange {
+	/*color: #F8A42A;*/
+	color: #0033FF;
+}
+
+.green {
+	color: #61BC47;
+}
+
+/*-----  Styles for main menu  -----*/
+.menuBar {
+	padding: 0px;
+	border-bottom: 1px solid silver;
+	background-color: white;
+}
+
+.menuCategory {
+	padding: 3px;
+	color: #0033AA;
+	cursor: pointer;
+}
+
+.menuItem {
+	border: 1px solid silver;
+	background-color: white;
+	/*padding: 5px;*/
+	z-index: 20;
+}
+
+.menuImage {
+	vertical-align: bottom;
+}
+
+.menuContent {
+	background-color: white;
+	color: #0033AA;
+	cursor: pointer;
+	/*padding: 2px;*/
+}
+/*----------------------------------*/
+
+
+/*-----  Styles for hystogram  -----*/
+
+.watchListHeader {
+	border-bottom: 1px solid silver;
+	font-weight: bold;
+	color: #003366;
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: top;
+}
+
+.watchList {
+	width: 800px;
+	border-bottom: 1px solid silver;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom:6px;
+}
+
+.watchListNumericColumn {
+	text-align: right;
+}
+
+.watchListObjectsColumn {
+	text-align: left;
+}
+
+.watchListRemoveColumn {
+  text-align: center;
+}
+
+/* Add Stock panel */
+.addPanel {
+  margin: 12px 0px 15px 0px;
+}
+
+/* Styles for Data Tables */
+.noChange {
+  color: black;
+}
+
+.positiveChange {
+  color: green;
+}
+
+.negativeChange {
+  color: red;
+}
+
+.evenRow {
+  background-color: white;
+}
+
+.oddRow {
+  background-color: #F0F0FF;
+}
+/* ---------------------- */
+
+/* Styles for Dynamic Lists */
+.containerCollapsed {
+	padding: 8px 2px 8px 2px;
+	background-color: white;
+}
+
+.containerExpanded {
+	padding: 8px 2px 8px 2px;
+	background-color: #F0F0FF;
+}
+
+.familySelected {
+  color: black;
+  background-color: white;
+  border: solid silver;
+  border-width: 1px 0px 1px 1px;
+  /*font-weight: bold;*/
+  text-decoration: none;
+  padding: 2px 15px 2px 12px;
+  cursor: auto;
+}
+
+.familyNormal {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: #F0F0FF;
+  border-width: 0px;
+  padding: 2px 15px 2px 12px;
+  cursor: pointer;
+}
+
+.kpiFirst {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: white;
+  border: solid silver;
+  border-width: 1px 1px 0px 1px;
+  padding: 2px 25px 2px 12px;
+  cursor: pointer;
+}
+
+.kpiFirstSelected {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: white;
+  border: solid silver;
+  border-left-color: white;
+  border-width: 1px 1px 0px 1px;
+  padding: 2px 25px 2px 12px;
+  cursor: pointer;
+}
+
+.kpiMedium {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: white;
+  border: solid silver;
+  border-width: 0px 1px 0px 1px;
+  padding: 2px 25px 2px 12px;
+  cursor: pointer;
+}
+
+.kpiMediumSelected {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: white;
+  border: solid silver;
+  border-left-color: white;
+  border-width: 0px 1px 0px 1px;
+  padding: 2px 25px 2px 12px;
+  cursor: pointer;
+}
+
+.kpiLast {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: white;
+  border: solid silver;
+  border-width: 0px 1px 1px 1px;
+  padding: 2px 25px 2px 12px;
+  cursor: pointer;
+}
+
+.kpiLastSelected {
+  color: #0000AA;
+  text-decoration: underline;
+  background-color: white;
+  border: solid silver;
+  border-left-color: white;
+  border-width: 0px 1px 1px 1px;
+  padding: 2px 25px 2px 12px;
+  cursor: pointer;
+}
+/* ---------------------- */
+.show{display:inline;}
+.hide{display:none;}

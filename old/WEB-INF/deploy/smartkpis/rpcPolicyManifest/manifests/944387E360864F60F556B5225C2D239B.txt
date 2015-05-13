@@ -1,0 +1,2 @@
+serviceClass: org.colombiamovil.smartkpi.client.NemesisService
+path: AF96666A5CEE4C1193F4AC4E3600CB37.gwt.rpc

@@ -1,0 +1,75 @@
+<project name="SmartKpisv4" basedir="." default="default">
+<property name="src.dir" value="src" />
+<property name="build.dir" value="war" />
+<path id="compile.classpath">
+    <fileset dir="${build.dir}/WEB-INF/lib">
+        <include name="**/*.jar" />
+        <include name="**/*.xml" />
+    </fileset>
+</path>
+
+<target name="default" depends="gwtc, buildwar,deploy">
+</target>
+
+<target name="gwtc" description="GWT compile to JavaScript">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+        <classpath>
+            <pathelement location="${src.dir}" />
+            <path refid="compile.classpath" />
+        </classpath>
+        <arg line="-logLevel INFO" />
+        <jvmarg value="-Xmx1024M" />
+        <arg value="org.colombiamovil.smartkpi.SmartKpis" />
+    </java>
+</target>
+
+<target name="buildwar">
+    <war basedir="war" destfile="SmartKpisv2.war" webxml="war/WEB-INF/web.xml">
+        <exclude name="WEB-INF/**" />
+        <webinf dir="war/WEB-INF/">
+            <include name="**/lib/**" />
+            <include name="**/gwt-servlet.jar" />
+            <include name="**/classes/**" />
+            <exclude name="**/lib/gwt-dev.jar" />
+            <exclude name="**/lib/gwt-user.jar" />
+
+        </webinf>
+    </war>
+</target>
+
+<target name="deploy">
+    <copy file="SmartKpisv2.war" todir="." />
+</target>
+
+</project>
+
+<!-- project name="SmartKpisv4" basedir="." default="default" -->
+	<!--<target name="package" description="smartkpis.war">
+		<echo message="Building War File"/>
+		<mkdir dir="war" />
+		<jar destfile="dist/smartkpis.war">
+			<zipfileset dir="war" includes="**/*.*" />
+		</jar>
+	</target>
+	<target name="deployment" description="FTP Deployment over ZAP" depends="package">
+		<echo message="Copying file over ZAP"/>
+		<ftp password="codedit"	server="10.65.35.209" userid="codedit" action="put" remotedir="/opt/tomcat5/webapps/" passive="no">
+			<fileset dir="war">
+				<include name="nms3.war"/>
+			</fileset>
+		</ftp>
+	</target>-->
+	<!-- target name="deploy">
+				<copy file="SmartKpiv4.war" todir="." />
+	</target>
+	<target name="default" depends="buildwar,deploy"></target>
+	 
+		<target name="buildwar">
+			<war basedir="war" destfile="SmartKpiv4.war" webxml="war/WEB-INF/web.xml">
+				<exclude name="WEB-INF/**" />
+				<webinf dir="war/WEB-INF/">
+					<include name="**/*.jar" />
+				</webinf>
+			</war>
+		</target>
+</project -->
